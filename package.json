@@ -1,0 +1,18 @@
+{
+  "name": "public-thermal-smoke",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src test",
+    "build": "tsc",
+    "test": "npm run build --silent && node --test test/*.test.mjs"
+  },
+  "devDependencies": {
+    "typescript": "6.0.3",
+    "eslint": "9.39.5",
+    "@eslint/js": "9.39.4",
+    "typescript-eslint": "8.67.0"
+  }
+}
