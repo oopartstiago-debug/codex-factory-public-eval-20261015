@@ -7,7 +7,12 @@ export function thermalResistance(layers: readonly Layer[]): number {
     if (!Number.isFinite(layer.thicknessMetres) || layer.thicknessMetres <= 0 ||
         !Number.isFinite(layer.conductivityWattsPerMetreKelvin) || layer.conductivityWattsPerMetreKelvin <= 0)
       throw new RangeError("Thickness and conductivity must be finite and positive");
-    total += layer.thicknessMetres / layer.conductivityWattsPerMetreKelvin;
+    const resistance = layer.thicknessMetres / layer.conductivityWattsPerMetreKelvin;
+    if (!Number.isFinite(resistance))
+      throw new RangeError("Layer resistance must be finite");
+    total += resistance;
+    if (!Number.isFinite(total))
+      throw new RangeError("Total resistance must be finite");
   }
   return total;
 }
